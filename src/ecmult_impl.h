@@ -29,15 +29,27 @@
 #  endif
 #else
 /* optimal for 128-bit and 256-bit exponents. */
+#ifndef USE_LOW_HEAP
 #define WINDOW_A 5
+#else
+#define WINDOW_A 2
+#endif
 /** larger numbers may result in slightly better performance, at the cost of
     exponentially larger precomputed tables. */
 #ifdef USE_ENDOMORPHISM
 /** Two tables for window size 15: 1.375 MiB. */
+#ifndef USE_LOW_HEAP
 #define WINDOW_G 15
 #else
+#define WINDOW_G 2
+#endif
+#else
 /** One table for window size 16: 1.375 MiB. */
+#ifndef USE_LOW_HEAP
 #define WINDOW_G 16
+#else
+#define WINDOW_G 2
+#endif
 #endif
 #endif
 
